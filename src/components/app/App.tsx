@@ -13,10 +13,6 @@ export const App = () => {
 	const [articleParams, setArticleParams] =
 		useState<ArticleStateType>(defaultArticleState);
 
-	const handleApplyParams = (params: ArticleStateType) => {
-		setArticleParams(params);
-	};
-
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -29,7 +25,7 @@ export const App = () => {
 					'--bg-color': articleParams.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm onApply={handleApplyParams} />
+			<ArticleParamsForm onApply={setArticleParams} />
 			<Article />
 		</main>
 	);

@@ -24,7 +24,7 @@ type ArticleParamsFormProps = {
 
 export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [state, setState] = useState<ArticleStateType>(defaultArticleState);
+	const [articleState, setArticleState] = useState<ArticleStateType>(defaultArticleState);
 
 	const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -36,18 +36,18 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 
 	const handleOnChange = (field: keyof ArticleStateType) => {
 		return (value: (typeof defaultArticleState)[typeof field]) => {
-			setState((prevState) => ({ ...prevState, [field]: value }));
+			setArticleState((prevState) => ({ ...prevState, [field]: value }));
 		};
 	};
 
 	const handleApply = (e: React.FormEvent) => {
 		e.preventDefault();
-		onApply(state);
+		onApply(articleState);
 	};
 
 	const handleReset = (e: React.FormEvent) => {
 		e.preventDefault();
-		setState(defaultArticleState);
+		setArticleState(defaultArticleState);
 		onApply(defaultArticleState);
 	};
 
@@ -74,7 +74,7 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 					<Select
 						title='ШРИФТ'
 						onChange={handleOnChange('fontFamilyOption')}
-						selected={state.fontFamilyOption}
+						selected={articleState.fontFamilyOption}
 						options={fontFamilyOptions}
 					/>
 
@@ -82,28 +82,28 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 						name='РАЗМЕР ШРИФТА'
 						title='РАЗМЕР ШРИФТА'
 						onChange={handleOnChange('fontSizeOption')}
-						selected={state.fontSizeOption}
+						selected={articleState.fontSizeOption}
 						options={fontSizeOptions}
 					/>
 
 					<Select
 						title='ЦВЕТ ШРИФТА'
 						onChange={handleOnChange('fontColor')}
-						selected={state.fontColor}
+						selected={articleState.fontColor}
 						options={fontColors}
 					/>
 
 					<Select
 						title='ЦВЕТ ФОНА'
 						onChange={handleOnChange('backgroundColor')}
-						selected={state.backgroundColor}
+						selected={articleState.backgroundColor}
 						options={backgroundColors}
 					/>
 
 					<Select
 						title='ШИРИНА КОНТЕНТА'
 						onChange={handleOnChange('contentWidth')}
-						selected={state.contentWidth}
+						selected={articleState.contentWidth}
 						options={contentWidthArr}
 					/>
 
